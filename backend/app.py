@@ -40,15 +40,15 @@ def process_file():
     file_type = file.filename.split(".")[-1].lower()
     
     if file_type == "pdf":
-        extracted_text = extract_from_pdf
+        extracted_text = extract_from_pdf(file)
     elif file_type == "xlsx":
-        extracted_text == extract_from_excel
+        extracted_text == extract_from_excel(file)
     elif file_type == "docx":
-        extracted_text == extract_from_word
+        extracted_text == extract_from_word(file)
     else:
         return jsonify({"error": "unsupported file type"}), 400
 
-    cursor.execute("INSERT INTO data_store (key, value) VALUES (?, ?)", ("extracted_text", extracted_text))
+    cursor.execute("INSERT INTO data_store (key, value) VALUES (?, ?)", (file.filename, extracted_text))
     conn.commit()
     return jsonify({"message": "File processed and data stored."})
 
