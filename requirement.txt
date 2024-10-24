@@ -1,0 +1,9 @@
+Flask
+pandas
+PyMuPDF
+python-docx
+spacy
+scikit-learn
+matplotlib
+plotly
+reportlab
